@@ -11,15 +11,15 @@
 
 // --- 1. DEFINIÇÃO DA PINAGEM (Hardware) ---
 // Atuadores
-#define PIN_LED_VERDE 25    // [cite: 54, 94]
-#define PIN_LED_VERMELHO 26 // [cite: 55, 96]
+#define PIN_LED_VERDE 1    // [cite: 54, 94]
+#define PIN_LED_VERMELHO 2 // [cite: 55, 96]
 
 // Sensores
-#define PIN_DHT 27          // [cite: 51, 75]
-#define PIN_PIR 14          // [cite: 53, 87]
-#define PIN_ULTRA_TRIG 32   // [cite: 50, 63]
-#define PIN_ULTRA_ECHO 33   // [cite: 50, 63]
-#define PIN_LDR 34          // [cite: 52, 80] (Pino analógico)
+#define PIN_DHT 8        // [cite: 51, 75]
+#define PIN_PIR 4         // [cite: 53, 87]
+#define PIN_ULTRA_TRIG 5  // [cite: 50, 63]
+#define PIN_ULTRA_ECHO 6  // [cite: 50, 63]
+#define PIN_LDR 7         // [cite: 52, 80] (Pino analógico)
 
 // Configurações do Sensor DHT
 #define DHTTYPE DHT11   // Mude para DHT22 se estiver usando esse modelo
