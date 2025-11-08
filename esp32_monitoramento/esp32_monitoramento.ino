@@ -2,6 +2,7 @@
  * ARQUIVO: esp32_monitoramento.ino
  * OBJETIVO: Etapa 02 - Receber dados via ESPNOW e exibir na Matriz de LEDs.
  * SENAI CIMATEC - Práticas Integradas: Camada de Serviço
+ * * PINAGEM CORRIGIDA PARA ESP32-S3 (sem conflitos)
  */
 
 // Bibliotecas de Conectividade
@@ -14,20 +15,21 @@
 #include <MD_MAX72xx.h>
 #include <SPI.h>
 
-// --- 1. DEFINIÇÃO DA PINAGEM (Hardware) ---
+// --- 1. DEFINIÇÃO DA PINAGEM (Hardware S3 - Corrigida) ---
 [cite_start]// LEDs de Status de Comunicação [cite: 151, 152]
-#define PIN_LED_VERDE_STATUS 25 // Aceso = Comunicação OK
-#define PIN_LED_VERMELHO_STATUS 26 // Aceso = Falha de Comunicação
+#define PIN_LED_VERDE_STATUS 12 // Aceso = Comunicação OK
+#define PIN_LED_VERMELHO_STATUS 13 // Aceso = Falha de Comunicação
 
-// Pinos da Matriz de LEDs (Hardware SPI)
+// Pinos da Matriz de LEDs
 #define HARDWARE_TYPE MD_MAX72xx::FC16_HW // Tipo de módulo
 #define MAX_DEVICES 4 // Número de matrizes 8x8 no seu módulo
-#define CLK_PIN 18    // Clock
-#define DATA_PIN 23   // Data (MOSI)
-#define CS_PIN 5      // Chip Select
+#define CLK_PIN 10    // Clock
+#define DATA_PIN 9   // Data (MOSI)
+#define CS_PIN 11      // Chip Select
 
-// Inicializa o controle da Matriz de LEDs
-MD_Parola P = MD_Parola(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
+// Inicializa o controle da Matriz de LEDs (CORRIGIDO PARA USAR OS PINOS DEFINIDOS)
+MD_Parola P = MD_Parola(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
+
 
 // --- 2. CONFIGURAÇÃO DO ESPNOW ---
 // Estrutura dos dados (DEVE SER IDÊNTICA à do ESP32 Chão de Fábrica)
@@ -208,7 +210,7 @@ void setup() {
   }
 
   // Registra a função de callback para QUANDO RECEBER dados
-  [cite_start]esp_now_register_recv_cb(OnDataRecv); [cite: 189]
+  esp_now_register_recv_cb(OnDataRecv); [cite_start]// [cite: 189]
   
   Serial.println("ESP-NOW inicializado. Aguardando pacotes...");
 }

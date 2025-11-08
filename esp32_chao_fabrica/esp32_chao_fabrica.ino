@@ -35,8 +35,7 @@ DHT dht(PIN_DHT, DHTTYPE);
  * do seu SEGUNDO ESP32 (o de monitoramento).
  * [cite: 105]
  */
-uint8_t mac_monitoramento[] = {0xXX, 0xXX, 0xXX, 0xXX, 0xXX, 0xXX};
-
+uint8_t mac_monitoramento[] = {0x30, 0xED, 0xA0, 0xB7, 0x24, 0x08};
 // Estrutura dos dados que serão enviados (struct) [cite: 118]
 // Esta estrutura deve ser IDÊNTICA no ESP32 de monitoramento
 typedef struct struct_message {
